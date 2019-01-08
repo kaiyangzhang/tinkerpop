@@ -130,7 +130,7 @@ public class SaslAuthenticationHandler extends AbstractAuthenticationHandler {
                     }
                 } else {
                     final ResponseMessage error = ResponseMessage.build(requestMessage)
-                            .statusMessage("Failed to authenticate")
+                            .statusMessage("Failed to authenticate")//Multi_threads shares the same client，throw failed to authenticate
                             .code(ResponseStatusCode.UNAUTHORIZED).create();
                     ctx.writeAndFlush(error);
                 }
